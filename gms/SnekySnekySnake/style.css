@@ -1,0 +1,431 @@
+/* ============================================================
+   Snake — games/snake/assets/css/style.css
+   Snake-specific styles. The global theme lives at
+   ../../assets/css/style.css (root /assets/css/style.css).
+   ============================================================ */
+
+/* ---------- Reset / Base ----------------------------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0f1117;
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ---------- Header ----------------------------------------- */
+header {
+  width: 100%;
+  max-width: 600px;
+  padding: 1.5rem 1rem 0.5rem;
+  text-align: center;
+}
+
+.back-link {
+  display: inline-block;
+  color: #7eb8f7;
+  text-decoration: none;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  transition: color 0.2s;
+}
+.back-link:hover { color: #ffffff; }
+
+header h1 {
+  font-size: 2.2rem;
+  background: linear-gradient(90deg, #43e97b, #38f9d7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: 0.25rem;
+}
+
+/* ---------- Main ------------------------------------------- */
+main {
+  width: 100%;
+  max-width: 600px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* ---------- Score Bar -------------------------------------- */
+.score-bar {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.score-box {
+  flex: 1;
+  background: #1a1d27;
+  border: 1px solid #2a2d3a;
+  border-radius: 10px;
+  padding: 0.6rem 0.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.score-box.highlight {
+  border-color: #43e97b;
+  box-shadow: 0 0 10px rgba(67, 233, 123, 0.2);
+}
+
+.score-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #888;
+}
+
+.score-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* ---------- Rank Banner ------------------------------------ */
+.rank-banner {
+  width: 100%;
+  background: #1a1d27;
+  border: 1px solid #2a2d3a;
+  border-radius: 12px;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: border-color 0.4s, box-shadow 0.4s;
+}
+
+.rank-banner.glow {
+  border-color: #f7c948;
+  box-shadow: 0 0 16px rgba(247, 201, 72, 0.3);
+}
+
+.rank-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.rank-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.rank-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #888;
+}
+
+.rank-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f7c948;
+}
+
+/* ---------- Difficulty Bar --------------------------------- */
+.difficulty-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.diff-label {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.diff-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.diff-btn {
+  background: #1a1d27;
+  border: 1px solid #2a2d3a;
+  border-radius: 8px;
+  color: #ccc;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.diff-btn small {
+  font-size: 0.7rem;
+  color: #888;
+}
+
+.diff-btn:hover {
+  background: #22263a;
+  color: #fff;
+}
+
+.diff-btn.active {
+  background: #1e3a2f;
+  border-color: #43e97b;
+  color: #43e97b;
+}
+
+.diff-btn.active small { color: #43e97b; }
+
+/* ---------- Canvas Wrapper --------------------------------- */
+.canvas-wrapper {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid #2a2d3a;
+  box-shadow: 0 0 30px rgba(67, 233, 123, 0.08);
+}
+
+#game-canvas {
+  display: block;
+  background: #11141c;
+}
+
+/* ---------- Overlay ---------------------------------------- */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 12, 18, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+  transition: opacity 0.3s;
+}
+
+.overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.overlay-box {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 2rem;
+}
+
+.overlay-icon { font-size: 3rem; }
+
+.overlay-box h2 {
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.overlay-box p {
+  color: #aaa;
+  font-size: 0.9rem;
+  max-width: 240px;
+}
+
+.btn-start {
+  margin-top: 0.5rem;
+  padding: 0.65rem 2rem;
+  background: linear-gradient(135deg, #43e97b, #38f9d7);
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f1117;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.btn-start:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 18px rgba(67, 233, 123, 0.5);
+}
+
+/* ---------- Controls Hint ---------------------------------- */
+.controls-hint {
+  font-size: 0.8rem;
+  color: #555;
+  text-align: center;
+}
+
+kbd {
+  display: inline-block;
+  background: #1e2130;
+  border: 1px solid #3a3d50;
+  border-radius: 5px;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.75rem;
+  color: #bbb;
+  margin: 0 1px;
+}
+
+/* ---------- Tier Ladder ------------------------------------ */
+.tier-ladder {
+  width: 100%;
+  background: #1a1d27;
+  border: 1px solid #2a2d3a;
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+}
+
+.tier-ladder h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+  color: #fff;
+}
+
+.tier-intro {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.tier-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.tier-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.tier-emoji { font-size: 1.3rem; line-height: 1; }
+
+.tier-rank {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.tier-threshold {
+  font-size: 0.8rem;
+  color: #555;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Active (current) tier */
+.tier-item.active {
+  background: #1e3a2f;
+  border-color: #43e97b;
+}
+
+.tier-item.active .tier-rank  { color: #43e97b; font-weight: 700; }
+.tier-item.active .tier-threshold { color: #43e97b; }
+
+/* ---------- Leaderboard ------------------------------------ */
+.leaderboard {
+  width: 100%;
+  background: #1a1d27;
+  border: 1px solid #2a2d3a;
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+}
+
+.leaderboard h2 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+thead tr {
+  border-bottom: 1px solid #2a2d3a;
+}
+
+th {
+  text-align: left;
+  color: #666;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  padding: 0 0.5rem 0.6rem;
+}
+
+td {
+  padding: 0.55rem 0.5rem;
+  color: #ccc;
+  border-bottom: 1px solid #1e2130;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+
+tbody tr:hover td { background: #1e2130; }
+
+td:first-child { color: #555; font-weight: 700; }
+
+.btn-clear {
+  margin-top: 1rem;
+  background: transparent;
+  border: 1px solid #3a2a2a;
+  border-radius: 8px;
+  color: #a05555;
+  padding: 0.4rem 1rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-clear:hover {
+  background: #3a2a2a;
+  color: #ff8080;
+}
+
+/* ---------- Footer ----------------------------------------- */
+footer {
+  margin-top: auto;
+  padding: 1.5rem;
+  font-size: 0.8rem;
+  color: #444;
+  text-align: center;
+}
+
+footer a {
+  color: #7eb8f7;
+  text-decoration: none;
+}
+footer a:hover { color: #fff; }
+
+/* ---------- Responsive ------------------------------------- */
+@media (max-width: 440px) {
+  .canvas-wrapper { width: 320px; height: 320px; }
+  #game-canvas    { width: 320px; height: 320px; }
+  .score-value    { font-size: 1.1rem; }
+  .diff-btn       { font-size: 0.75rem; padding: 0.35rem 0.6rem; }
+}
