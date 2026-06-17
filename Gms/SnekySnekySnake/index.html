@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snake — My Projects</title>
+  <!-- Snake's own stylesheet, now inside this project's assets folder -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <header>
+    <a href="../../index.html" class="back-link">← Back to Home</a>
+    <h1>🐍 Snake</h1>
+    <p class="subtitle">Use arrow keys or WASD to move. Don't hit the walls or yourself!</p>
+  </header>
+
+  <main>
+
+    <!-- Score Bar -->
+    <div class="score-bar">
+      <div class="score-box">
+        <span class="score-label">Score</span>
+        <span class="score-value" id="score">0</span>
+      </div>
+      <div class="score-box highlight">
+        <span class="score-label">High Score</span>
+        <span class="score-value" id="high-score">0</span>
+      </div>
+      <div class="score-box">
+        <span class="score-label">Level</span>
+        <span class="score-value" id="level">1</span>
+      </div>
+    </div>
+
+    <!-- Current Rank Banner -->
+    <div class="rank-banner" id="rank-banner">
+      <span class="rank-icon" id="rank-icon">🥚</span>
+      <div class="rank-text">
+        <span class="rank-label">Current Rank</span>
+        <span class="rank-name" id="rank-name">Just Hatched</span>
+      </div>
+    </div>
+
+    <!-- Difficulty Selector -->
+    <div class="difficulty-bar">
+      <span class="diff-label">Difficulty:</span>
+      <div class="diff-buttons">
+        <!-- data-mult = points multiplier per food eaten -->
+        <button class="diff-btn" data-speed="150" data-mult="1">🟢 Easy <small>×1</small></button>
+        <button class="diff-btn active" data-speed="100" data-mult="2">🟡 Medium <small>×2</small></button>
+        <button class="diff-btn" data-speed="60" data-mult="3">🔴 Hard <small>×3</small></button>
+      </div>
+    </div>
+
+    <!-- Canvas -->
+    <div class="canvas-wrapper">
+      <canvas id="game-canvas" width="400" height="400"></canvas>
+
+      <!-- Overlay (start / game-over screen) -->
+      <div class="overlay" id="overlay">
+        <div class="overlay-box">
+          <div class="overlay-icon" id="overlay-icon">🐍</div>
+          <h2 id="overlay-title">Snake</h2>
+          <p id="overlay-msg">Choose a difficulty and press Start!</p>
+          <button class="btn-start" id="btn-start">▶ Start Game</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls hint -->
+    <p class="controls-hint">
+      <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> or
+      <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to move &nbsp;|&nbsp;
+      <kbd>P</kbd> to pause
+    </p>
+
+    <!-- Tier Ladder -->
+    <section class="tier-ladder">
+      <h2>🪜 Tier Ladder</h2>
+      <p class="tier-intro">
+        Higher difficulties earn points faster (Medium ×2, Hard ×3),
+        so you can climb the ranks quicker on tougher settings!
+      </p>
+      <ul class="tier-list" id="tier-list">
+        <li class="tier-item" data-min="0">
+          <span class="tier-emoji">🥚</span>
+          <span class="tier-rank">Just Hatched</span>
+          <span class="tier-threshold">0+</span>
+        </li>
+        <li class="tier-item" data-min="10">
+          <span class="tier-emoji">🐛</span>
+          <span class="tier-rank">Lil' Wriggler</span>
+          <span class="tier-threshold">10+</span>
+        </li>
+        <li class="tier-item" data-min="25">
+          <span class="tier-emoji">🐍</span>
+          <span class="tier-rank">Hiss-tory in the Making</span>
+          <span class="tier-threshold">25+</span>
+        </li>
+        <li class="tier-item" data-min="50">
+          <span class="tier-emoji">🎶</span>
+          <span class="tier-rank">Snake Charmer</span>
+          <span class="tier-threshold">50+</span>
+        </li>
+        <li class="tier-item" data-min="100">
+          <span class="tier-emoji">🔥</span>
+          <span class="tier-rank">Sssensational!</span>
+          <span class="tier-threshold">100+</span>
+        </li>
+        <li class="tier-item" data-min="175">
+          <span class="tier-emoji">💎</span>
+          <span class="tier-rank">Top of the Food Chain</span>
+          <span class="tier-threshold">175+</span>
+        </li>
+        <li class="tier-item" data-min="275">
+          <span class="tier-emoji">🐲</span>
+          <span class="tier-rank">Ssserpent Sovereign</span>
+          <span class="tier-threshold">275+</span>
+        </li>
+        <li class="tier-item" data-min="400">
+          <span class="tier-emoji">👑</span>
+          <span class="tier-rank">Legend-dary Danger Noodle</span>
+          <span class="tier-threshold">400+</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- High Score Table -->
+    <section class="leaderboard">
+      <h2>🏆 Your Top Scores</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Score</th>
+            <th>Difficulty</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard-body">
+          <!-- Filled by script.js -->
+        </tbody>
+      </table>
+      <button class="btn-clear" id="btn-clear">🗑 Clear Scores</button>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Part of <a href="../../index.html">My Projects</a></p>
+  </footer>
+
+  <!-- Snake's own script, now inside this project's assets folder -->
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
