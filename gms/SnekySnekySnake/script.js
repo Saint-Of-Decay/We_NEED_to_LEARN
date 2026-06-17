@@ -12,7 +12,7 @@ const SPEEDS = { easy: 150, medium: 100, hard: 60 }; // ms per tick
 
 /* ---------- Tier definitions ------------------------------- */
 const TIERS = [
-  { min: 400, emoji: '👑', name: 'Legend-dary Danger Noodle' },
+  { min: 400, emoji: '👑', name: 'Legendary Danger Noodle' },
   { min: 275, emoji: '🐲', name: 'Ssserpent Sovereign'       },
   { min: 175, emoji: '💎', name: 'Top of the Food Chain'     },
   { min: 100, emoji: '🔥', name: 'Sssensational!'            },
